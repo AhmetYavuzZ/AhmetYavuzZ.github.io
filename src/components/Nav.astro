@@ -1,0 +1,164 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { navLinks, profile } from '../data/profile';
+---
+
+<nav class="nav-shell wrapper">
+	<a href="#top" class="brand" aria-label={profile.name}>
+		<span class="brand-mark">AY</span>
+		<span class="brand-copy">
+			<strong>{profile.shortName}</strong>
+			<small>{profile.role}</small>
+		</span>
+	</a>
+
+	<div class="nav-links" aria-label="Bölümler">
+		{
+			navLinks.map(({ label, href }) => (
+				<a class="nav-link" href={href}>
+					{label}
+				</a>
+			))
+		}
+	</div>
+
+	<div class="nav-actions">
+		<a class="ghost-link" href={profile.github} target="_blank" rel="noreferrer">
+			GitHub
+		</a>
+		<a class="ghost-link" href={profile.linkedin} target="_blank" rel="noreferrer">
+			LinkedIn
+		</a>
+		<a class="cv-link" href={profile.cvPath} download>
+			CV
+		</a>
+		<ThemeToggle />
+	</div>
+</nav>
+
+<style>
+	.nav-shell {
+		position: sticky;
+		top: 1rem;
+		z-index: 20;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		align-items: center;
+		margin-top: 1rem;
+		margin-bottom: 3rem;
+		padding: 1rem 1.1rem;
+		border: 1px solid var(--line-soft);
+		border-radius: 1.4rem;
+		background: var(--surface-elevated);
+		backdrop-filter: blur(18px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+		color: var(--gray-100);
+		text-decoration: none;
+	}
+
+	.brand-mark {
+		display: flex;
+		width: 2.9rem;
+		height: 2.9rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 1rem;
+		font-family: var(--font-brand);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		color: var(--accent-text-over);
+		background: var(--gradient-accent);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.brand-copy {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+	}
+
+	.brand-copy strong {
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.brand-copy small {
+		color: var(--gray-400);
+		font-size: 0.8rem;
+	}
+
+	.nav-links,
+	.nav-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		align-items: center;
+	}
+
+	.nav-link,
+	.ghost-link,
+	.cv-link {
+		display: inline-block;
+		text-decoration: none;
+		border-radius: 999px;
+		transition:
+			transform var(--theme-transition),
+			background-color var(--theme-transition),
+			border-color var(--theme-transition);
+	}
+
+	.nav-link,
+	.ghost-link {
+		padding: 0.68rem 1rem;
+		border: 1px solid var(--line-soft);
+		color: var(--gray-300);
+		background: var(--surface-soft);
+		font-size: 0.94rem;
+	}
+
+	.cv-link {
+		padding: 0.75rem 1.05rem;
+		font-size: 0.94rem;
+		font-weight: 700;
+		color: var(--accent-text-over);
+		background: var(--gradient-accent);
+	}
+
+	.nav-link:hover,
+	.nav-link:focus,
+	.ghost-link:hover,
+	.ghost-link:focus,
+	.cv-link:hover,
+	.cv-link:focus {
+		transform: translateY(-1px);
+	}
+
+	@media (min-width: 64em) {
+		.nav-shell {
+			grid-template-columns: auto 1fr auto;
+			padding-inline: 1.35rem;
+		}
+
+		.nav-links {
+			justify-content: center;
+		}
+
+		.nav-actions {
+			justify-content: flex-end;
+		}
+	}
+
+	@media (max-width: 40em) {
+		.nav-actions {
+			justify-content: space-between;
+		}
+	}
+</style>

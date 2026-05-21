@@ -1,0 +1,245 @@
+:root {
+	--gray-0: #07111a;
+	--gray-50: #0f1f2d;
+	--gray-100: #132431;
+	--gray-200: #294152;
+	--gray-300: #456072;
+	--gray-400: #637f8f;
+	--gray-500: #869eab;
+	--gray-600: #b7c7cf;
+	--gray-700: #d8e2e7;
+	--gray-800: #ebf1f4;
+	--gray-900: #f5f8fa;
+	--gray-999: #fffdf8;
+
+	--accent-light: #68e0d1;
+	--accent-regular: #0ea5a8;
+	--accent-dark: #075985;
+	--accent-secondary: #ff7a59;
+	--accent-overlay: rgba(14, 165, 168, 0.2);
+	--accent-text-over: #f7fffe;
+
+	--line-soft: rgba(19, 36, 49, 0.09);
+	--line-strong: rgba(19, 36, 49, 0.16);
+	--surface-soft: rgba(255, 255, 255, 0.58);
+	--surface-elevated: rgba(255, 255, 255, 0.74);
+	--surface-solid: rgba(255, 255, 255, 0.9);
+
+	--link-color: var(--accent-dark);
+	--gradient-accent: linear-gradient(135deg, #0ea5a8 0%, #33c4be 48%, #ff7a59 100%);
+	--gradient-border: linear-gradient(135deg, rgba(14, 165, 168, 0.35), rgba(255, 122, 89, 0.22));
+	--gradient-subtle: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(243, 247, 249, 0.86));
+	--shadow-sm: 0 12px 30px rgba(7, 17, 26, 0.08);
+	--shadow-md: 0 24px 80px rgba(7, 17, 26, 0.12);
+	--shadow-lg: 0 30px 110px rgba(7, 17, 26, 0.18);
+
+	--text-sm: 0.875rem;
+	--text-base: 1rem;
+	--text-md: 1.125rem;
+	--text-lg: 1.25rem;
+	--text-xl: 1.625rem;
+	--text-2xl: 2.125rem;
+	--text-3xl: 2.625rem;
+	--text-4xl: 3.5rem;
+	--text-5xl: 4.5rem;
+
+	--font-system: 'Segoe UI', sans-serif;
+	--font-body: 'Manrope', var(--font-system);
+	--font-brand: 'Sora', var(--font-system);
+	--theme-transition: 0.2s ease-in-out;
+}
+
+:root.theme-dark {
+	--gray-0: #f5fbff;
+	--gray-50: #e2eef5;
+	--gray-100: #d4e5f0;
+	--gray-200: #aac1d0;
+	--gray-300: #88a2b3;
+	--gray-400: #6c8799;
+	--gray-500: #507084;
+	--gray-600: #2d4657;
+	--gray-700: #172f40;
+	--gray-800: #0d1f2d;
+	--gray-900: #091520;
+	--gray-999: #06101a;
+
+	--accent-light: #76f4dc;
+	--accent-regular: #22c2b0;
+	--accent-dark: #60a5fa;
+	--accent-secondary: #ff9d72;
+	--accent-overlay: rgba(34, 194, 176, 0.23);
+	--accent-text-over: #021014;
+
+	--line-soft: rgba(212, 229, 240, 0.1);
+	--line-strong: rgba(212, 229, 240, 0.16);
+	--surface-soft: rgba(9, 21, 32, 0.62);
+	--surface-elevated: rgba(9, 21, 32, 0.78);
+	--surface-solid: rgba(11, 25, 37, 0.92);
+
+	--link-color: var(--accent-light);
+	--gradient-accent: linear-gradient(135deg, #22c2b0 0%, #4ee0d8 45%, #ff9d72 100%);
+	--gradient-border: linear-gradient(135deg, rgba(34, 194, 176, 0.32), rgba(255, 157, 114, 0.18));
+	--gradient-subtle: linear-gradient(180deg, rgba(8, 18, 29, 0.9), rgba(7, 16, 26, 0.82));
+	--shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.22);
+	--shadow-md: 0 24px 80px rgba(0, 0, 0, 0.34);
+	--shadow-lg: 0 30px 110px rgba(0, 0, 0, 0.44);
+}
+
+html,
+body {
+	min-height: 100%;
+	overflow-x: hidden;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--gray-999);
+	color: var(--gray-200);
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.6;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	color: var(--link-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	line-height: 1.1;
+	font-family: var(--font-brand);
+	font-weight: 700;
+	color: var(--gray-0);
+}
+
+h1 {
+	font-size: clamp(2.8rem, 6vw, var(--text-5xl));
+}
+
+h2 {
+	font-size: clamp(2.2rem, 4vw, var(--text-4xl));
+}
+
+h3 {
+	font-size: clamp(1.6rem, 3vw, var(--text-3xl));
+}
+
+h4 {
+	font-size: var(--text-2xl);
+}
+
+h5 {
+	font-size: var(--text-xl);
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.wrapper {
+	width: 100%;
+	max-width: 82rem;
+	margin-inline: auto;
+	padding-inline: 1.5rem;
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+}
+
+.gap-2 {
+	gap: 0.5rem;
+}
+
+.gap-4 {
+	gap: 1rem;
+}
+
+.gap-8 {
+	gap: 2rem;
+}
+
+.gap-10 {
+	gap: 2.5rem;
+}
+
+.gap-15 {
+	gap: 3.75rem;
+}
+
+.gap-20 {
+	gap: 5rem;
+}
+
+.gap-30 {
+	gap: 7.5rem;
+}
+
+.gap-48 {
+	gap: 12rem;
+}
+
+@media (min-width: 50em) {
+	.wrapper {
+		padding-inline: 2.25rem;
+	}
+
+	.lg\:gap-2 {
+		gap: 0.5rem;
+	}
+
+	.lg\:gap-4 {
+		gap: 1rem;
+	}
+
+	.lg\:gap-8 {
+		gap: 2rem;
+	}
+
+	.lg\:gap-10 {
+		gap: 2.5rem;
+	}
+
+	.lg\:gap-15 {
+		gap: 3.75rem;
+	}
+
+	.lg\:gap-20 {
+		gap: 5rem;
+	}
+
+	.lg\:gap-30 {
+		gap: 7.5rem;
+	}
+
+	.lg\:gap-48 {
+		gap: 12rem;
+	}
+}

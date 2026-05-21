@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sayfa Bulunamadı" description="Aradığınız sayfa bulunamadı">
+	<main class="wrapper error-page">
+		<section class="error-card">
+			<p>404</p>
+			<h1>Aradığınız sayfa burada değil.</h1>
+			<a href="/">Ana sayfaya dön</a>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.error-page {
+		display: grid;
+		place-items: center;
+		padding-block: 6rem;
+	}
+
+	.error-card {
+		display: grid;
+		gap: 1rem;
+		max-width: 36rem;
+		padding: 2rem;
+		border: 1px solid var(--line-soft);
+		border-radius: 1.5rem;
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+		text-align: center;
+	}
+
+	.error-card p {
+		font-size: 0.9rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		color: var(--accent-regular);
+	}
+
+	.error-card a {
+		color: var(--gray-100);
+		font-weight: 700;
+	}
+</style>

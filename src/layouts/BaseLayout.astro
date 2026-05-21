@@ -1,0 +1,55 @@
+---
+import Footer from '../components/Footer.astro';
+import MainHead from '../components/MainHead.astro';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="tr">
+	<head>
+		<MainHead title={title} description={description} />
+	</head>
+	<body>
+		<div class="stack site-shell">
+			<Nav />
+			<slot />
+			<Footer />
+		</div>
+
+		<style>
+			:root {
+				--page-glow-1: rgba(14, 165, 168, 0.18);
+				--page-glow-2: rgba(255, 122, 89, 0.16);
+				--page-glow-3: rgba(29, 78, 216, 0.12);
+			}
+
+			:root.theme-dark {
+				--page-glow-1: rgba(45, 212, 191, 0.15);
+				--page-glow-2: rgba(249, 115, 22, 0.14);
+				--page-glow-3: rgba(59, 130, 246, 0.12);
+			}
+
+			.site-shell {
+				min-height: 100%;
+				isolation: isolate;
+				background:
+					radial-gradient(circle at top left, var(--page-glow-1), transparent 32%),
+					radial-gradient(circle at top right, var(--page-glow-2), transparent 28%),
+					radial-gradient(circle at 50% 35%, var(--page-glow-3), transparent 34%),
+					linear-gradient(180deg, var(--gray-999) 0%, var(--gray-900) 100%);
+			}
+
+			@media (forced-colors: active) {
+				.site-shell {
+					background: none;
+				}
+			}
+		</style>
+	</body>
+</html>

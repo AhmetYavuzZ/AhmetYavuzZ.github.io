@@ -1,0 +1,605 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+	credentials,
+	domainExperience,
+	experienceTimeline,
+	highlightMetrics,
+	profile,
+	skillGroups,
+	spotlightCards,
+	workingPrinciples,
+} from '../data/profile';
+---
+
+<BaseLayout title={`${profile.name} | ${profile.role}`} description={profile.summary}>
+	<main class="homepage stack gap-20 lg:gap-30">
+		<section id="top" class="wrapper hero-grid">
+			<div class="hero-copy stack gap-8">
+				<div class="stack gap-4">
+					<p class="eyebrow">Software Engineer · Full Stack Developer · Product-minded delivery</p>
+					<h1>{profile.heroTitle}</h1>
+					<p class="lead">{profile.summary}</p>
+				</div>
+
+				<div class="cta-row">
+					<a class="button primary" href="#experience">Deneyime Git</a>
+					<a class="button secondary" href={profile.cvPath} download>
+						CV İndir
+					</a>
+				</div>
+
+				<div class="meta-row">
+					<a href={`mailto:${profile.email}`}>{profile.email}</a>
+					<span>{profile.location}</span>
+					<a href={profile.github} target="_blank" rel="noreferrer">
+						{profile.githubLabel}
+					</a>
+				</div>
+			</div>
+
+			<div class="hero-bento">
+				<div class="intro-card panel">
+					<p class="panel-label">Kısa Özet</p>
+					<h2>{profile.shortName}</h2>
+					<p>
+						Backend tarafında güvenli servisler kurarken frontend tarafta operasyon ekiplerinin işini
+						hızlandıran arayüzler geliştiriyorum.
+					</p>
+				</div>
+
+				<div class="chips-card panel">
+					<p class="panel-label">Odak Teknolojiler</p>
+					<div class="chip-list">
+						<span>Java</span>
+						<span>Spring Boot</span>
+						<span>Vue 3</span>
+						<span>React</span>
+						<span>PostgreSQL</span>
+						<span>GitHub Actions</span>
+						<span>Docker</span>
+						<span>Elasticsearch</span>
+					</div>
+				</div>
+
+				<div class="hero-stack">
+					{
+						spotlightCards.map((card) => (
+							<article class="panel spotlight-card">
+								<p class="panel-label">{card.eyebrow}</p>
+								<h3>{card.title}</h3>
+								<p>{card.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="wrapper metrics-grid" aria-label="Öne çıkan metrikler">
+			{
+				highlightMetrics.map((item) => (
+					<article class="metric-card panel">
+						<strong>{item.value}</strong>
+						<span>{item.label}</span>
+					</article>
+				))
+			}
+		</section>
+
+		<section id="about" class="wrapper content-section">
+			<div class="section-heading stack gap-2">
+				<p class="eyebrow">Profil</p>
+				<h2>Kurumsal ürünler ile modern web geliştirme arasında köprü kuruyorum.</h2>
+			</div>
+
+			<div class="about-grid">
+				<article class="panel narrative-card">
+					<p>
+						Java ve Spring Boot odaklı full stack geliştirici olarak monolitik ve microservice tabanlı
+						sistemlerde üretim sorumluluğu aldım. REST API tasarımı, multi-tenant veritabanı yapıları,
+						rol ve yetki yönetimi, CI/CD ve operasyon ekranları güçlü olduğum alanlar.
+					</p>
+					<p>
+						Vue.js ve React ile geliştirdiğim arayüzlerde amacım sadece görsel olarak temiz ekranlar
+						çıkarmak değil; iş akışını hızlandıran, veriyle karar vermeyi kolaylaştıran deneyimler
+						tasarlamak.
+					</p>
+				</article>
+
+				<div class="credentials-stack">
+					<article class="panel info-card">
+						<p class="panel-label">Eğitim</p>
+						<p>{credentials.education}</p>
+					</article>
+					<article class="panel info-card">
+						<p class="panel-label">Sertifikalar</p>
+						<ul>
+							{credentials.certifications.map((item) => <li>{item}</li>)}
+						</ul>
+					</article>
+					<article class="panel info-card">
+						<p class="panel-label">Diller</p>
+						<ul>
+							{credentials.languages.map((item) => <li>{item}</li>)}
+						</ul>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section id="experience" class="wrapper content-section">
+			<div class="section-heading stack gap-2">
+				<p class="eyebrow">Deneyim</p>
+				<h2>Canlı sistemlerde farklı ürün alanlarına dokunan teslimatlar.</h2>
+			</div>
+
+			<div class="timeline-grid">
+				{
+					experienceTimeline.map((item) => (
+						<article class="panel timeline-card">
+							<div class="timeline-top">
+								<span class="timeline-period">{item.period}</span>
+								<div>
+									<h3>{item.role}</h3>
+									<p class="timeline-company">{item.company}</p>
+								</div>
+							</div>
+							<p>{item.summary}</p>
+							<ul>
+								{item.highlights.map((point) => <li>{point}</li>)}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+
+			<div class="domain-grid">
+				{
+					domainExperience.map((domain) => (
+						<article class="panel domain-card">
+							<div class="domain-header">
+								<div>
+									<h3>{domain.title}</h3>
+									<p class="domain-stack">{domain.stack}</p>
+								</div>
+							</div>
+							<p>{domain.description}</p>
+							<ul>
+								{domain.points.map((point) => <li>{point}</li>)}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section id="stack" class="wrapper content-section">
+			<div class="section-heading stack gap-2">
+				<p class="eyebrow">Teknik Yetenekler</p>
+				<h2>Backend derinliği, frontend teslimatı ve yayın disiplini tek pakette.</h2>
+			</div>
+
+			<div class="skills-grid">
+				{
+					skillGroups.map((group) => (
+						<article class="panel skill-card">
+							<h3>{group.title}</h3>
+							<div class="chip-list">
+								{group.items.map((item) => <span>{item}</span>)}
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="wrapper content-section">
+			<div class="section-heading stack gap-2">
+				<p class="eyebrow">Çalışma Tarzı</p>
+				<h2>İyi ürünler sadece kodla değil, süreç ve sahiplenme ile çıkıyor.</h2>
+			</div>
+
+			<div class="principles-grid">
+				{
+					workingPrinciples.map((principle) => (
+						<article class="panel principle-card">
+							<h3>{principle.title}</h3>
+							<p>{principle.text}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section id="contact" class="wrapper contact-section">
+			<div class="panel contact-card">
+				<div class="stack gap-4">
+					<p class="eyebrow">İletişim</p>
+					<h2>Yeni bir ürün, ekip veya problem varsa konuşabiliriz.</h2>
+					<p>
+						Full stack ürün geliştirme, backend yoğun roller veya operasyonel sistemler tarafında
+						katkı sunabileceğim iş birliklerine açığım.
+					</p>
+				</div>
+
+				<div class="contact-actions">
+					<a class="button primary" href={`mailto:${profile.email}`}>
+						E-posta Gönder
+					</a>
+					<a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
+						LinkedIn Aç
+					</a>
+				</div>
+
+				<div class="contact-meta">
+					<div>
+						<span>E-posta</span>
+						<a href={`mailto:${profile.email}`}>{profile.email}</a>
+					</div>
+					<div>
+						<span>Telefon</span>
+						<a href={`tel:${profile.phone.replace(/\s+/g, '')}`}>{profile.phone}</a>
+					</div>
+					<div>
+						<span>GitHub</span>
+						<a href={profile.github} target="_blank" rel="noreferrer">
+							{profile.githubLabel}
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.homepage {
+		padding-bottom: 3rem;
+	}
+
+	.hero-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.hero-copy {
+		padding-top: 0.5rem;
+	}
+
+	.eyebrow {
+		font-size: 0.88rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent-regular);
+	}
+
+	.lead {
+		max-width: 60ch;
+		font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+		color: var(--gray-300);
+	}
+
+	.cta-row,
+	.meta-row,
+	.contact-actions,
+	.contact-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.9rem;
+		align-items: center;
+	}
+
+	.meta-row {
+		color: var(--gray-400);
+		font-size: 0.95rem;
+	}
+
+	.meta-row a,
+	.contact-meta a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.95rem 1.25rem;
+		border-radius: 999px;
+		font-weight: 800;
+		text-decoration: none;
+		transition:
+			transform var(--theme-transition),
+			box-shadow var(--theme-transition),
+			border-color var(--theme-transition);
+	}
+
+	.button:hover,
+	.button:focus {
+		transform: translateY(-2px);
+	}
+
+	.button.primary {
+		color: var(--accent-text-over);
+		background: var(--gradient-accent);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.button.secondary {
+		border: 1px solid var(--line-strong);
+		color: var(--gray-100);
+		background: var(--surface-soft);
+	}
+
+	.panel {
+		position: relative;
+		border: 1px solid var(--line-soft);
+		border-radius: 1.6rem;
+		padding: 1.4rem;
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+		overflow: hidden;
+	}
+
+	.panel::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: 1px;
+		background: var(--gradient-border);
+		mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		-webkit-mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		mask-composite: exclude;
+		-webkit-mask-composite: xor;
+		pointer-events: none;
+		opacity: 0.7;
+	}
+
+	.panel-label {
+		margin-bottom: 0.8rem;
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-400);
+	}
+
+	.hero-bento,
+	.hero-stack,
+	.metrics-grid,
+	.domain-grid,
+	.skills-grid,
+	.principles-grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.hero-bento {
+		grid-template-columns: 1fr;
+	}
+
+	.intro-card h2 {
+		margin-bottom: 0.4rem;
+	}
+
+	.chip-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.chip-list span {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.55rem 0.8rem;
+		border-radius: 999px;
+		border: 1px solid var(--line-soft);
+		background: var(--surface-soft);
+		color: var(--gray-200);
+		font-size: 0.92rem;
+	}
+
+	.spotlight-card h3,
+	.metric-card strong,
+	.skill-card h3,
+	.principle-card h3,
+	.domain-card h3,
+	.timeline-card h3 {
+		margin-bottom: 0.45rem;
+	}
+
+	.metrics-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.metric-card {
+		gap: 0.35rem;
+	}
+
+	.metric-card strong {
+		font-size: clamp(1.5rem, 2vw, 2rem);
+		color: var(--gray-0);
+	}
+
+	.metric-card span {
+		color: var(--gray-300);
+	}
+
+	.content-section {
+		display: grid;
+		gap: 1.4rem;
+	}
+
+	.section-heading {
+		max-width: 48rem;
+	}
+
+	.about-grid,
+	.timeline-grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.narrative-card {
+		display: grid;
+		gap: 1rem;
+		color: var(--gray-200);
+		font-size: 1.04rem;
+	}
+
+	.credentials-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.info-card ul,
+	.timeline-card ul,
+	.domain-card ul {
+		margin: 0;
+		padding-left: 1rem;
+		color: var(--gray-200);
+	}
+
+	.info-card li + li,
+	.timeline-card li + li,
+	.domain-card li + li {
+		margin-top: 0.45rem;
+	}
+
+	.timeline-top {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		margin-bottom: 1rem;
+	}
+
+	.timeline-period,
+	.domain-stack {
+		color: var(--accent-regular);
+		font-weight: 800;
+		font-size: 0.92rem;
+	}
+
+	.timeline-company {
+		color: var(--gray-400);
+	}
+
+	.domain-card,
+	.skill-card,
+	.principle-card {
+		height: 100%;
+	}
+
+	.contact-section {
+		padding-bottom: 1rem;
+	}
+
+	.contact-card {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.contact-meta {
+		align-items: flex-start;
+	}
+
+	.contact-meta div {
+		display: grid;
+		gap: 0.25rem;
+		min-width: 11rem;
+	}
+
+	.contact-meta span {
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--gray-400);
+	}
+
+	@media (min-width: 52em) {
+		.hero-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+			align-items: start;
+			gap: 1.5rem;
+		}
+
+		.metrics-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.hero-bento {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.intro-card {
+			grid-column: span 2;
+		}
+
+		.hero-stack {
+			grid-column: span 2;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.about-grid {
+			grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+		}
+
+		.domain-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.skills-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.principles-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.contact-card {
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: end;
+		}
+
+		.contact-meta {
+			grid-column: 1 / -1;
+			justify-content: space-between;
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.hero-copy,
+		.hero-bento > *,
+		.metric-card {
+			animation: rise 0.7s ease both;
+		}
+
+		.hero-bento > *:nth-child(2) {
+			animation-delay: 0.08s;
+		}
+
+		.hero-bento > *:nth-child(3) {
+			animation-delay: 0.16s;
+		}
+	}
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
