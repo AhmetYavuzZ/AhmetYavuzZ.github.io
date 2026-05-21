@@ -416,6 +416,13 @@ import {
 		margin-bottom: 0.45rem;
 	}
 
+	.spotlight-card h3 {
+		font-size: clamp(1.8rem, 2.2vw, 2.4rem);
+		overflow-wrap: anywhere;
+		word-break: break-word;
+		hyphens: auto;
+	}
+
 	.metrics-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -546,7 +553,7 @@ import {
 
 		.hero-stack {
 			grid-column: span 2;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 		}
 
 		.about-grid {

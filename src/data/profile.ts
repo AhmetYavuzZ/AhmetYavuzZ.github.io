@@ -1,6 +1,6 @@
 export const profile = {
-	name: 'Ahmet Muhammet Yavuz',
-	shortName: 'Ahmet Yavuz',
+	name: 'Ahmet Muhammet YAVUZ',
+	shortName: 'Ahmet Muhammet YAVUZ',
 	role: 'Software Engineer | Full Stack Developer',
 	heroTitle: 'Java ve Spring Boot ile üretime çıkan ürünler geliştiriyorum.',
 	summary:
